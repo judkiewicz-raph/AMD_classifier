@@ -7,15 +7,27 @@ from torchvision.transforms.v2 import functional as F
 
 def get_label_from_filename(filename):
     """
-    Get disease label from filename
+    Get disease label from filename.
+
+    Args:
+        filename (str): The name of the file.
+
+    Returns:
+        str: The disease label extracted from the filename.
     """
 
     name = os.path.splitext(filename)[0]
-    label = name.split('_')[1]
+    label = name.split('_')[-1]
     return label
 
-
 def plot(imgs, row_title=None, **imshow_kwargs):
+    """
+    Plot the list of images imgs.
+
+    Args:
+        imgs (List): A list of 3 channels images as arrays or tensors .
+    """
+
     if not isinstance(imgs[0], list):
         # Make a 2d grid even if there's just 1 row
         imgs = [imgs]
